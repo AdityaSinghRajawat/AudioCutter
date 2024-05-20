@@ -56,9 +56,6 @@ const Page = () => {
     }
   }
 
-  console.log(audioUrl);
-  console.log(audio);
-
   const trimmedBufferToUrl = (buffer: AudioBuffer) => {
     const wav = toWav(buffer);
     const blob = new Blob([new DataView(wav)], { type: 'audio/wav' });

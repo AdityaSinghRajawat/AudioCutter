@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-const page = () => {
+const Page = () => {
 
   const [audio, setAudio] = useState<File>();
   const [start, setStart] = useState<number>(0);
@@ -163,4 +163,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;

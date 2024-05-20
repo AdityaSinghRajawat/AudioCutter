@@ -42,6 +42,7 @@ const Page = () => {
       const audioObj = new Audio(url);
       audioObj.onloadedmetadata = function () {
         setDuration(audioObj.duration)
+        setEnd(audioObj.duration)
       };
 
       const arrayBuffer = await audio.arrayBuffer();
@@ -130,7 +131,7 @@ const Page = () => {
               }
             />
             <Label
-              className="cursor-pointer border-2 border-emerald-500 text-md text-gray-400 rounded-xl p-2"
+              className="cursor-pointer border-2 border-emerald-500 text-md text-gray-400 rounded-xl p-2 hover:bg-emerald-500 hover:text-white transition-colors duration-300"
               htmlFor="audio"
             >
               {audio?.name || "Select an Audio"}
@@ -145,10 +146,39 @@ const Page = () => {
               Your browser does not support the audio element.
             </audio>
 
-            <Input type="number" value={start} onChange={(e) => setStart(Number(e.target.value))} />
-            <Input type="number" value={end} onChange={(e) => setEnd(Number(e.target.value))} />
-            <Button onClick={handleTrim}>Cut</Button>
-            {trimmedAudioUrl && <a href={trimmedAudioUrl} download>Download</a>}
+            <div className="flex items-center justify-between gap-8">
+              <div className="flex items-center gap-2">
+                <Label className="text-gray-400" htmlFor="start">Start:</Label>
+                <Input
+                  type="number"
+                  id="start"
+                  value={start}
+                  onChange={(e) => setStart(Number(e.target.value))}
+                  className="bg-gray-800 text-gray-300 border border-gray-600 rounded-md px-3 py-2 w-24"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <Label className="text-gray-400" htmlFor="end">End:</Label>
+                <Input
+                  type="number"
+                  id="end"
+                  value={end}
+                  onChange={(e) => setEnd(Number(e.target.value))}
+                  className="bg-gray-800 text-gray-300 border border-gray-600 rounded-md px-3 py-2 w-24"
+                />
+              </div>
+            </div>
+
+            <Button onClick={handleTrim} size='default' className="bg-emerald-500 w-40 hover:bg-emerald-600 text-white px-4 py-2 rounded-md transition-colors duration-300">
+              Cut
+            </Button>
+            {trimmedAudioUrl &&
+              <Button className="text-emerald-500 hover:text-white transition-colors duration-300 border-2 border-emerald-500">
+                <a href={trimmedAudioUrl} download >
+                  Download
+                </a>
+              </Button>
+            }
 
           </div>
         }
@@ -156,7 +186,6 @@ const Page = () => {
       </main>
 
     </div>
-
   )
 }
 

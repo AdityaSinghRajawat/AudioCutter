@@ -144,7 +144,7 @@ const Page = () => {
           <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-8">
 
             <audio controls>
-              <source src={trimmedAudioUrl ? trimmedAudioUrl : audioUrl} type="audio/mpeg" />
+              <source src={audioUrl} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
 
